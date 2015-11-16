@@ -1,11 +1,10 @@
 {
     "push": {
-      "name": "",
+      "name": "ch.uzh.kispi.smw-offline-client.packer-json",
       "vcs": true
     },
     "variables": {
-        "atlas_username": "{{env `ATLAS_USERNAME`}}",
-        "atlas_name": "{{env `ATLAS_NAME`}}"
+        "atlas_username": "lexs"
     },
     "provisioners": [
         {
@@ -16,13 +15,21 @@
                 "scripts/vagrant.sh",
                 "scripts/dep.sh",
                 "scripts/cleanup.sh",
-                "scripts/zerodisk.sh"
+                "scripts/zerodisk.sh",
+                "scripts/ansible.sh"
             ],
             "override": {
                 "virtualbox-iso": {
                     "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
                 }
             }
+        },
+        {
+            "type": "ansible-local",
+            "playbook_file": "playbook.smw-offline-client.yml",
+            "role_paths": [
+                "roles/smw-offline-client"
+            ]
         }
     ],
     "builders": [
@@ -62,7 +69,7 @@
         {
             "type": "atlas",
             "only": ["virtualbox-iso"],
-            "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+            "artifact": "LinuxCompetenceCenter/ch.zh.kispi.smw-offline-client",
             "artifact_type": "vagrant.box",
             "metadata": {
                 "provider": "virtualbox",

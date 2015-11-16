@@ -1,0 +1,17 @@
+---
+
+- name: Install packages using APT
+  apt: name={{item}} state=latest update_cache=yes
+  with_items:
+    - apache2
+    - php5
+    - mysql-server
+    - python-pip
+    - python-mysqldb
+
+- name: Install Python libraries
+  pip: name={{item}}
+  with_items:
+    - mwclient
+
+- include: secure_mysql.yml
