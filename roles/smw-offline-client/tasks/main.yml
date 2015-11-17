@@ -5,9 +5,14 @@
   with_items:
     - apache2
     - php5
+    - php5-xcache
+    - php5-mysql
     - mysql-server
     - python-pip
     - python-mysqldb
+    - python-boto
+    - duplicity
+    - vim
 
 - name: Install Python libraries
   pip: name={{item}}

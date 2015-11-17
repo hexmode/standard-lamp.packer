@@ -39,7 +39,7 @@
                 "<esc><esc><enter><wait>",
                 "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
                 "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-                "hostname={{ .Name }} ",
+                "hostname=KispiOfflineClient",
                 "fb=false debconf/frontend=noninteractive ",
                 "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
                 "initrd=/install/initrd.gz -- <enter>"
@@ -68,12 +68,13 @@
         },
         {
             "type": "atlas",
+            "token": "i3MdSbYxkyf25Q.atlasv1.aajda6ClbaCqJrm75em6SZ0aRSbU2HvclxDwirCAso1qDCcN1yJiloE5b51eGCJDKS0",
             "only": ["virtualbox-iso"],
             "artifact": "LinuxCompetenceCenter/ch.zh.kispi.smw-offline-client",
             "artifact_type": "vagrant.box",
             "metadata": {
                 "provider": "virtualbox",
-                "version": "0.0.1"
+                "version": "0.0.4"
             }
         }]
     ]
