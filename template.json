@@ -1,10 +1,11 @@
 {
     "push": {
-      "name": "ch.uzh.kispi.smw-offline-client.packer-json",
+      "name": "LinuxCompetenceCenter/ch.uzh.kispi.smw-offline-client",
       "vcs": true
     },
     "variables": {
-        "atlas_username": "lexs"
+        "atlas_username": "{{env `ATLAS_USERNAME`}}",
+        "atlas_name": "{{env `ATLAS_NAME`}}"
     },
     "provisioners": [
         {
@@ -37,9 +38,10 @@
             "type": "virtualbox-iso",
             "boot_command": [
                 "<esc><esc><enter><wait>",
-                "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+                "/install/vmlinuz noapic ",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
                 "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-                "hostname=KispiOfflineClient",
+                "hostname={{ .Name }} ",
                 "fb=false debconf/frontend=noninteractive ",
                 "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
                 "initrd=/install/initrd.gz -- <enter>"
@@ -68,7 +70,6 @@
         },
         {
             "type": "atlas",
-            "token": "i3MdSbYxkyf25Q.atlasv1.aajda6ClbaCqJrm75em6SZ0aRSbU2HvclxDwirCAso1qDCcN1yJiloE5b51eGCJDKS0",
             "only": ["virtualbox-iso"],
             "artifact": "LinuxCompetenceCenter/ch.zh.kispi.smw-offline-client",
             "artifact_type": "vagrant.box",
