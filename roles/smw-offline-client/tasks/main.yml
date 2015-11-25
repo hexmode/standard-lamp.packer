@@ -1,18 +1,32 @@
 ---
 
+- name: Remove Ruby
+  apt: name={{item}} state=absent
+  with_items:
+    - ruby1.9.1
+    - ruby1.8
+    - ruby2.0
+
 - name: Install packages using APT
-  apt: name={{item}} state=latest update_cache=yes
+  apt: name={{item}}
+    state=latest
+    update_cache=yes
+    force=yes
   with_items:
     - apache2
     - php5
-    - php5-xcache
-    - php5-mysql
-    - mysql-server
     - python-pip
+    - libmariadbclient-dev
+    - mariadb-server
+    - php5-xcache
+    - php5-mysqlnd
     - python-mysqldb
     - python-boto
+    - python-lxml
+    - python-yaml
     - duplicity
     - vim
+    - python-dev
 
 - name: Install Python libraries
   pip: name={{item}}
