@@ -14,6 +14,8 @@
 - name: Register mysql root password in MySQL
   mysql_user: name=root host={{ item }}
     password={{ mysql_root_passwd.stdout }}
+    login_user=root
+    login_password=changerootpassword
   with_items:
     - 127.0.0.1
     - ::1

@@ -4,4 +4,4 @@
   sudo: True
   gather_facts: False
   roles:
-    - smw-offline-client
+    - standard-smw

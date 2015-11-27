@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export DEBIAN_FRONTEND=noninteractive
+debconf-set-selections <<< 'mariadb-server-10.0 mysql-server/root_password password changerootpassword'
+debconf-set-selections <<< 'mariadb-server-10.0 mysql-server/root_password_again password changerootpassword'
+apt-get install -y mariadb-server
