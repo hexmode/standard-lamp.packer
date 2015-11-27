@@ -17,7 +17,6 @@
     - php5
     - python-pip
     - libmariadbclient-dev
-    - mariadb-server
     - php5-xcache
     - php5-mysqlnd
     - python-mysqldb
@@ -25,12 +24,16 @@
     - python-lxml
     - python-yaml
     - duplicity
-    - vim
     - python-dev
+    - vim
+    - npm
+    - git
+
+#- shell: "DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server"
 
 - name: Install Python libraries
   pip: name={{item}}
   with_items:
     - mwclient
 
-- include: secure_mysql.yml
+- include: install_nodejs_libraries.yml

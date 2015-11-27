@@ -30,7 +30,8 @@
             "playbook_file": "playbook.smw-offline-client.yml",
             "role_paths": [
                 "roles/smw-offline-client"
-            ]
+            ],
+            "extra_arguments": "-v"
         }
     ],
     "builders": [

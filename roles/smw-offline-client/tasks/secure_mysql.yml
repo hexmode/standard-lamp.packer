@@ -12,7 +12,8 @@
   when: mycnf_root_file.stat.exists == false
  
 - name: Register mysql root password in MySQL
-  mysql_user: name=root host={{ item }} password={{ mysql_root_passwd.stdout }}
+  mysql_user: name=root host={{ item }}
+    password={{ mysql_root_passwd.stdout }}
   with_items:
     - 127.0.0.1
     - ::1
