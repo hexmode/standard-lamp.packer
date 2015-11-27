@@ -1,6 +1,6 @@
 {
     "push": {
-      "name": "LinuxCompetenceCenter/ch.uzh.kispi.smw-offline-client",
+      "name": "LinuxCompetenceCenter/ch.l-c-c.standard-smw",
       "vcs": true
     },
     "variables": {
@@ -27,9 +27,9 @@
         },
         {
             "type": "ansible-local",
-            "playbook_file": "playbook.smw-offline-client.yml",
+            "playbook_file": "playbook.standard-smw.yml",
             "role_paths": [
-                "roles/smw-offline-client"
+                "roles/standard-smw"
             ],
             "extra_arguments": "-v"
         }
@@ -72,7 +72,7 @@
         {
             "type": "atlas",
             "only": ["virtualbox-iso"],
-            "artifact": "LinuxCompetenceCenter/ch.zh.kispi.smw-offline-client",
+            "artifact": "LinuxCompetenceCenter/ch.l-c-c.standard-smw",
             "artifact_type": "vagrant.box",
             "metadata": {
                 "provider": "virtualbox",
