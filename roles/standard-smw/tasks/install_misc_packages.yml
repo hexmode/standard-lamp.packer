@@ -19,3 +19,5 @@
     - imagemagick
     - lua5.2
     - vim
+    - python-boto
+    - memcached
