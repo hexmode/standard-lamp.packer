@@ -21,7 +21,7 @@
     - Image_GraphViz
 
 - name: Refresh Pear
-  shell: pear clear-cache && pear update-channels && pear upgrade
+  shell: yes '' | pear clear-cache && pear update-channels && pear upgrade
 
 - name: Install Pecl yaml package
   shell: yes '' | pecl install yaml

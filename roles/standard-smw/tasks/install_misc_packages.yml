@@ -21,3 +21,4 @@
     - vim
     - python-boto
     - memcached
+    - libyaml-dev
