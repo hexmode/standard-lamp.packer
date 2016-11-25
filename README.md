@@ -1,5 +1,6 @@
-# ch.l-c-c.standard-smw.packer
+# Fork of L-C-C SMW image
 
-This Packer/Atlas/Vagrant/Ansible configuration represents the DNA of [Linux Competence Center](http://www.linux-competence-center.ch/Informatikl%25F6sungen/Semantic-MediaWiki.htm)'s customer-agnostic basic [Vagrant](https://www.vagrantup.com/) box for implementing [Semantic MediaWiki](http://www.semantic-mediawiki.org)s.
+I needed a basic file to provide an SMW setup. This is a fork of the SMW ansible scripts that [Linux Competence Center](http://www.linux-competence-center.ch/Informatikl%25F6sungen/Semantic-MediaWiki.htm) published at [github](https://github.com/LinuxCompetenceCenter/ch.l-c-c.standard-smw.packer).
 
-The box is available at [LinuxCompetenceCenter/boxes/ch.l-c-c.standard-smw](https://atlas.hashicorp.com/LinuxCompetenceCenter/boxes/ch.l-c-c.standard-smw).
+I'm trying to write something here that an ansible n00b can use.
+
