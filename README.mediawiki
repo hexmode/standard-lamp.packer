@@ -13,3 +13,8 @@ Based on [http://docs.ansible.com/ansible/intro_getting_started.html Getting Sta
 # Update <tt>etc/hosts</tt> in this repository's directory to include the host you want to manage.
 #: At a minimum, this means listing out the names or IP addresses of the hosts being managed.  For more information, see  [http://docs.ansible.com/ansible/intro_inventory.html the documentation for inventory files].
 #:The ansible.cfg file in this repository specifies <tt>etc/hosts</tt> (in this directory) instead of <tt>/etc/ansible/hosts</tt> as the inventory file used by <tt>ansible-playbook</tt>.  I've done this so that the end user of this repository does not need to edit any files in their system's root directory.
+#: I've set up my own ansible-controlled host under VirtualBox using [http://isoredirect.centos.org/centos/6/isos/x86_64/ the minimal ISO from CentOS 6].
+#: Make sure you have networking set up.  This may mean that you need to edit <tt>/etc/sysconfig/network-scripts/ifcfg-eth0</tt> to and set <tt>ONBOOT=yes</tt>.
+#: If you're on Windows, make sure your virtual machines are on the same network by checking "Settings -> Network" for each machine. At least one adapter on each machine must share a network.  From the drop down, you will probably need to change "NAT" to "NAT Network".
+#: Make sure you have ssh login to the host set up.  You can use [http://mah.everybody.org/docs/ssh my ssh-agent instructions] to make this seamless.
+#: If you've done this correctly, then <tt>ansible \* --list-hosts</tt> should show the hosts you've put in <tt>etc/hosts</tt> and the output of <tt>ansible \* -m ping</tt> should contain "SUCCESS".
