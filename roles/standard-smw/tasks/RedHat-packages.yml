@@ -1,41 +1,12 @@
 ---
-- name: Enable EPEL repo
-  yum_repository:
-    description: EPEL Yum repo
-    name: epel
-    state: present
-    baseurl: http://download.fedoraproject.org/pub/epel/$releasever/$basearch/
-    enabled: yes
-
-- name: Install EPEL key
+- name: Set Webtatic key
   rpm_key:
-    key: http://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ansible_distribution_major_version}}
-
-- name: Enable Webtatic repo
-  yum_repository:
-    description: Webtatic Yum repo
-    name: webtatic
-    state: present
-    baseurl: https://repo.webtatic.com/yum/el{{ansible_distribution_major_version}}/$basearch/
-    enabled: yes
-
-- name: Install webtatic key 5/6
-  when: ansible_distribution_major_version == 5 or ansible_distribution_major_version == 6
-  rpm_key:
-    key: https://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-andy
-
-- name: Install webtatic key 7+
-  when:
-    - ansible_distribution_major_version != 5
-    - ansible_distribution_major_version != 6
-  rpm_key:
-    key: https://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el{{ansible_distribution_major_version}}
+    key: "{{webtatickey}}"
 
 - include: includes.yml
   vars:
     rootpassword: ""
     apache: httpd
-    mod_auth_mysql: mod_auth_mysql
     libxml2_dev: libxml2-devel
     libxslt_dev: libxslt-devel
     imagemagick: ImageMagick
@@ -51,7 +22,7 @@
     php_odbc: php{{php_ver}}-odbc
     php_tidy: php{{php_ver}}-tidy
     php_common: php{{php_ver}}-common
-    php_sqlite: basesystem
+    php_sqlite: php-pdo
     php_dev: php{{php_ver}}-devel
     php_xmlrpc: php{{php_ver}}-xmlrpc
     php_imagick: php{{php_ver}}-pecl-imagick
@@ -59,6 +30,6 @@
     php_memcache: basesystem
     python_dev: python-devel
     python_mysqld: MySQL-python
-    dbclient_dev: mysql-devel
-    dbserver: mysql-server
+    dbclient_dev: "{{dbname}}-devel"
     selinux_python: libselinux-python
+

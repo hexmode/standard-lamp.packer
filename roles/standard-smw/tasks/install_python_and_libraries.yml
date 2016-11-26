@@ -1,6 +1,6 @@
 ---
 
-- name: Install Python apt packages
+- name: Install Python packages
   package:
     name={{item}}
     state=latest

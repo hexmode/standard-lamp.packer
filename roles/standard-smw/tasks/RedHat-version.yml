@@ -1,0 +1,40 @@
+---
+- name: Enable EPEL repo
+  yum_repository:
+    description: EPEL Yum repo
+    name: epel
+    state: present
+    baseurl: http://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    enabled: yes
+
+- name: Install EPEL key
+  rpm_key:
+    key: http://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ansible_distribution_major_version}}
+
+- name: Enable Webtatic repo
+  yum_repository:
+    description: Webtatic Yum repo
+    name: webtatic
+    state: present
+    baseurl: https://repo.webtatic.com/yum/el{{ansible_distribution_major_version}}/$basearch/
+    enabled: yes
+
+- name: Settings for RH 5/6
+  when: ansible_distribution_major_version == 5 or ansible_distribution_major_version == 6
+  include: RedHat-packages.yml
+  vars:
+    webtatickey: https://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-andy
+    dbname: mysql
+    dbservice: mysqld
+    mod_auth_mysql: mod_auth_mysql
+
+- name: Settings for RH 7+
+  when:
+    - ansible_distribution_major_version != 5
+    - ansible_distribution_major_version != 6
+  include: RedHat-packages.yml
+  vars:
+    webtatickey: https://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el{{ansible_distribution_major_version}}
+    dbname: mariadb
+    dbservice: mariadb
+    mod_auth_mysql: basesystem

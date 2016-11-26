@@ -21,6 +21,13 @@
     - "{{php_dev}}"
     - "{{mod_php}}"
 
+- name: get pear dir
+  shell: pear config-get cache_dir
+  register: pear_cache_dir
+
+- name: set up pear dir
+  file: path={{pear_cache_dir.stdout}} state=directory recurse=yes mode=0755
+
 - name: Refresh Pear
   shell: yes '' | pear clear-cache && pear update-channels && pear upgrade
 

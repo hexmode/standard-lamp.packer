@@ -1,4 +1,4 @@
-- include: Redhat-packages.yml
+- include: RedHat-version.yml
   name: php 7
   when: php_version == 7
   vars:
@@ -6,7 +6,7 @@
     phpinidir: /etc/php.d
     php_memcache: basesystem
 
-- include: Redhat-packages.yml
+- include: RedHat-version.yml
   name: php 5
   when: php_version == 5
   vars:

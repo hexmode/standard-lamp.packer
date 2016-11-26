@@ -23,7 +23,7 @@
 #   when: mycnf_root_file.stat.exists == false
 
 - name: start mysql
-  service: name=mysqld state=started enabled=yes
+  service: name={{dbservice}} state=started enabled=yes
 
 - name: Register mysql root password in MySQL
   shell: mysqladmin -u root password "{{mysql_root_passwd.stdout}}"
