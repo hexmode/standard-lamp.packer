@@ -1,9 +1,11 @@
 ---
 
 - name: Add ppa:brightbox/ruby-ng
+  when: ansible_os_family == "Debian"
   apt_repository: repo=ppa:brightbox/ruby-ng
 
 - name: Remove Ruby
+  when: ansible_os_family == "Debian"
   apt: name={{item}} state=absent
   with_items:
     - ruby1.9.1
@@ -11,6 +13,7 @@
     - ruby2.0
 
 - name: Install Ruby
+  when: ansible_os_family == "Debian"
   apt: name={{item}}
     state=latest
     update_cache=yes

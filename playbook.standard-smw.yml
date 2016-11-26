@@ -1,7 +1,7 @@
 ---
 
 - hosts: all
-  sudo: True
-  gather_facts: False
+  become: True
+  gather_facts: True
   roles:
     - standard-smw

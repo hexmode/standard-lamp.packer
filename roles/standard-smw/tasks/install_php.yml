@@ -1,23 +1,41 @@
 ---
 
-- name: Install PHP apt packages
-  apt: name={{item}}
+- name: Install PHP packages
+  package: name={{item}}
     state=latest
-    update_cache=yes
-    force=yes
   with_items:
-    - php5
-    - php5-cgi
-    - php5-cli
-    - php5-curl
-    - php5-json
-    - php5-odbc
-    - php5-tidy
-    - php5-common
-    - php5-sqlite
-    - php5-xmlrpc
-    - php5-xcache
-    - php5-imagick
-    - php5-mysqlnd
-    - php-pear
-    - libapache2-mod-php5
+    - "{{php}}"
+    - "{{php_pear}}"
+    - "{{php_cgi}}"
+    - "{{php_cli}}"
+    - "{{php_curl}}"
+    - "{{php_json}}"
+    - "{{php_odbc}}"
+    - "{{php_tidy}}"
+    - "{{php_common}}"
+    - "{{php_sqlite}}"
+    - "{{php_xmlrpc}}"
+    - "{{php_memcache}}"
+    - "{{php_imagick}}"
+    - "{{php_mysqlnd}}"
+    - "{{php_dev}}"
+    - "{{mod_php}}"
+
+- name: Refresh Pear
+  shell: yes '' | pear clear-cache && pear update-channels && pear upgrade
+
+- name: Install Pear packages
+  command: pear install -s {{ item }}
+  register: command_result
+  with_items:
+    - Mail
+    - Net_SMTP
+    - Image_GraphViz
+  failed_when: "'No releases available' in command_result.stderr"
+  changed_when: "'install ok' in command_result.stdout"
+
+# - name: Install Pecl yaml package
+#   shell: #yes '' | pecl install yaml
+
+# - name: Add extension=yaml.so to php.ini
+#   lineinfile: dest={{phpinidir}}/yaml.ini regexp=yaml.so line=extension=yaml.so create=yes

@@ -1,16 +1,15 @@
 ---
 
 - name: Install Python apt packages
-  apt: name={{item}}
+  package:
+    name={{item}}
     state=latest
-    update_cache=yes
-    force=yes
   with_items:
-    - python-mysqldb
+    - "{{python_mysqld}}"
     - python-pip
     - python-boto
     - python-pycurl
-    - python-dev
+    - "{{python_dev}}"
     - python-lxml
     - python-yaml
 

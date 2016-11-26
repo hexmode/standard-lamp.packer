@@ -1,0 +1,33 @@
+---
+
+- include: includes.yml
+  vars:
+    rootpassword: changerootpassword
+    phpinidir: /etc/php5/conf.d
+    apache: apache2
+    mod_auth_mysql: libapache2-mod-auth-mysql
+    libxml2_dev: libxml2-dev
+    libxslt_dev: libxslt-dev
+    imagemagick: imagemagick
+    lua: lua5.2
+    libyaml_dev: libyaml-dev
+    php: php{{php_ver}}
+    php_pear: php-pear
+    php_cgi: php{{php_ver}}-cgi
+    mod_php: libapache2-mod-php{{php_ver}}
+    php_cli: php{{php_ver}}-cli
+    php_curl: php{{php_ver}}-curl
+    php_json: php{{php_ver}}-json
+    php_odbc: php{{php_ver}}-odbc
+    php_tidy: php{{php_ver}}-tidy
+    php_common: php{{php_ver}}-common
+    php_dev: php{{php_ver}}-dev
+    php_sqlite: php{{php_ver}}-sqlite
+    php_xmlrpc: php{{php_ver}}-xmlrpc
+    php_memcache: php{{php_ver}}-memcache
+    php_imagick: php{{php_ver}}-imagick
+    php_mysqlnd: php{{php_ver}}-mysqlnd
+    python_dev: python-dev
+    python_mysqld: python-mysqld
+    dbclient_dev: libmariadbclient-dev
+    selinux_python:

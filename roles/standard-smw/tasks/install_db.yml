@@ -1,0 +1,27 @@
+---
+
+- name: Place MariaDB install script
+  when: ansible_os_family == "Debian"
+  template: src=install_mariadb.sh.j2
+    dest=/root/install_mariadb.sh
+    mode=700
+
+- name: Install MariaDB
+  when: ansible_os_family == "Debian"
+  command: ./install_mariadb.sh
+    chdir=/root
+
+- name: Install DB packages
+  package: name={{item}}
+    state=latest
+  with_items:
+    - "{{dbclient_dev}}"
+    - "{{dbserver}}"
+
+- name: start db
+  service:
+    name: mysqld
+    enabled: yes
+    state: started
+
+- include: secure_db.yml

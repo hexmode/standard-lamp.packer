@@ -1,10 +1,8 @@
 ---
 
-- name: Install packages using APT
-  apt: name={{item}}
+- name: Install node packages
+  package: name={{item}}
     state=latest
-    update_cache=yes
-    force=yes
   with_items:
     - nodejs
     - npm
@@ -16,6 +14,7 @@
 
 # path=link name, src=target
 - name: Create symbolic link for running node.js
+  when: ansible_os_family == "Debian"
   file: path=/usr/bin/node
     src=/usr/bin/nodejs
     state=link
