@@ -4,4 +4,4 @@
   sudo: True
   gather_facts: False
   roles:
-    - standard-smw
+    - standard-lamp
