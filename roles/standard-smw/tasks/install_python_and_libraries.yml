@@ -1,7 +1,7 @@
 ---
 
 - name: Install Python apt packages
-  apt: name={{item}}
+  package: name={{item}}
     state=latest
     update_cache=yes
     force=yes

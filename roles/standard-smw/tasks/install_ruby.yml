@@ -4,14 +4,14 @@
   apt_repository: repo=ppa:brightbox/ruby-ng
 
 - name: Remove Ruby
-  apt: name={{item}} state=absent
+  package: name={{item}} state=absent
   with_items:
     - ruby1.9.1
     - ruby1.8
     - ruby2.0
 
 - name: Install Ruby
-  apt: name={{item}}
+  package: name={{item}}
     state=latest
     update_cache=yes
     force=yes

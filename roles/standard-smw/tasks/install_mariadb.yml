@@ -10,7 +10,7 @@
     chdir=/root
 
 - name: Install MariaDB apt packages
-  apt: name={{item}}
+  package: name={{item}}
     state=latest
     update_cache=yes
     force=yes
