@@ -1,22 +1,24 @@
 ---
 
 - name: Add ppa:brightbox/ruby-ng
+  when: ansible_os_family == "Debian"
   apt_repository: repo=ppa:brightbox/ruby-ng
 
 - name: Remove Ruby
   package: name={{item}} state=absent
+  when: ansible_os_family == "Debian"
   with_items:
-    - ruby1.9.1
-    - ruby1.8
-    - ruby2.0
+	- ruby1.9.1
+	- ruby1.8
+	- ruby2.0
 
 - name: Install Ruby
   package: name={{item}}
-    state=latest
-    update_cache=yes
-    force=yes
+	state=latest
+	update_cache=yes
+	force=yes
   with_items:
-    - ruby2.2
-    - ruby2.2-dev
-    - rubygems
-    - rubygems1.8
+	- ruby2.2
+	- ruby2.2-dev
+	- rubygems
+	- rubygems1.8

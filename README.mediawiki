@@ -1,0 +1,20 @@
+= Fork of L-C-C SMW image =
+
+I needed a basic file to provide an SMW setup. This is a fork of the SMW ansible scripts that [https://www.semantic-mediawiki.org/wiki/User:Lex Lex Sulzer] of the [http://www.linux-competence-center.ch/Informatikl%25F6sungen/Semantic-MediaWiki.htm Linux Competence Center] published at [github](https://github.com/LinuxCompetenceCenter/ch.l-c-c.standard-smw.packer).
+
+I'm trying to write something here that an ansible n00b can use.
+
+== Initial set up ==
+
+Based on [http://docs.ansible.com/ansible/intro_getting_started.html Getting Started].
+
+# [http://docs.ansible.com/ansible/intro_installation.html Install Ansible].
+#: I usually just install the packages for my OS.  Note that you can't install Asnbile on Windows, so you'll have to download [https://www.virtualbox.org/ VirtualBox] to use this.  (I'm writing this using VritualBox's [https://www.virtualbox.org/manual/ch04.html#sharedfolders shared folders] feature.
+# Update <tt>etc/hosts</tt> in this repository's directory to include the host you want to manage.
+#: At a minimum, this means listing out the names or IP addresses of the hosts being managed.  For more information, see  [http://docs.ansible.com/ansible/intro_inventory.html the documentation for inventory files].
+#:The ansible.cfg file in this repository specifies <tt>etc/hosts</tt> (in this directory) instead of <tt>/etc/ansible/hosts</tt> as the inventory file used by <tt>ansible-playbook</tt>.  I've done this so that the end user of this repository does not need to edit any files in their system's root directory.
+#: I've set up my own ansible-controlled host under VirtualBox using [http://isoredirect.centos.org/centos/6/isos/x86_64/ the minimal ISO from CentOS 6].
+#: Make sure you have networking set up.  This may mean that you need to edit <tt>/etc/sysconfig/network-scripts/ifcfg-eth0</tt> to and set <tt>ONBOOT=yes</tt>.
+#: If you're on Windows, make sure your virtual machines are on the same network by checking "Settings -> Network" for each machine. At least one adapter on each machine must share a network.  From the drop down, you will probably need to change "NAT" to "NAT Network".
+#: Make sure you have ssh login to the host set up.  You can use [http://mah.everybody.org/docs/ssh my ssh-agent instructions] to make this seamless.
+#: If you've done this correctly, then <tt>ansible \* --list-hosts</tt> should show the hosts you've put in <tt>etc/hosts</tt> and the output of <tt>ansible \* -m ping</tt> should contain "SUCCESS".

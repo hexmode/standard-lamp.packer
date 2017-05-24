@@ -1,0 +1,16 @@
+---
+
+- name: Install DB packages
+  package: name={{item}}
+    state=latest
+  with_items:
+    - "{{dbclient_dev}}"
+    - "{{dbname}}-server"
+
+- name: start db
+  service:
+    name: "{{dbservice}}"
+    enabled: yes
+    state: started
+
+- include: secure_db.yml

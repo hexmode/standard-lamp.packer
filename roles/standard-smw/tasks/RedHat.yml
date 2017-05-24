@@ -1,0 +1,16 @@
+- include: RedHat-version.yml
+  name: php 7
+  when: php_version == 7
+  vars:
+    php_ver: 70w
+    phpinidir: /etc/php.d
+    php_memcache: basesystem
+
+- include: RedHat-version.yml
+  name: php 5
+  when: php_version == 5
+  vars:
+    php_ver: 56w
+    phpinidir: /etc/php.d
+    php_memcache: php{{php_ver}}-memcache
+

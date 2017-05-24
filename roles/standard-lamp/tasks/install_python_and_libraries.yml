@@ -1,20 +1,19 @@
 ---
 
-- name: Install Python apt packages
-  package: name={{item}}
-    state=latest
-    update_cache=yes
-    force=yes
+- name: Install Python packages
+  package:
+	name={{item}}
+	state=latest
   with_items:
-    - python-mysqldb
-    - python-pip
-    - python-boto
-    - python-pycurl
-    - python-dev
-    - python-lxml
-    - python-yaml
+	- "{{python_mysqld}}"
+	- python-pip
+	- python-boto
+	- python-pycurl
+	- "{{python_dev}}"
+	- python-lxml
+	- python-yaml
 
 - name: Install Python libraries
   pip: name={{item}}
   with_items:
-    - mwclient
+	- mwclient

@@ -1,24 +1,23 @@
 ---
 
-- name: Install packages using APT
-  package: name={{item}}
-    state=latest
-    update_cache=yes
-    force=yes
+- name: Install misc packages
+  package:
+	name={{item}}
+	state=latest
   with_items:
-    - unzip
-    - curl
-    - tree
-    - libxml2-dev
-    - libxslt-dev
-    - git
-    - duplicity
-    - graphviz
-    - ncftp
-    - uuid
-    - imagemagick
-    - lua5.2
-    - vim
-    - python-boto
-    - memcached
-    - libyaml-dev
+	- unzip
+	- curl
+	- tree
+	- "{{libxml2_dev}}"
+	- "{{libxslt_dev}}"
+	- git
+	- duplicity
+	- graphviz
+	- uuid
+	- "{{imagemagick}}"
+	- "{{lua}}"
+	- vim
+	- python-boto
+	- memcached
+	- "{{libyaml_dev}}"
+	- "{{selinux_python}}"

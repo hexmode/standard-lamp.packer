@@ -1,0 +1,35 @@
+---
+- name: Set Webtatic key
+  rpm_key:
+    key: "{{webtatickey}}"
+
+- include: includes.yml
+  vars:
+    rootpassword: ""
+    apache: httpd
+    libxml2_dev: libxml2-devel
+    libxslt_dev: libxslt-devel
+    imagemagick: ImageMagick
+    lua: lua
+    libyaml_dev: libyaml-devel
+    php_pear: php{{php_ver}}-pear
+    php: php{{php_ver}}
+    php_cgi: php{{php_ver}}-cgi
+    mod_php: php{{php_ver}}
+    php_cli: php{{php_ver}}-cli
+    php_curl: php{{php_ver}}-curl
+    php_json: php{{php_ver}}-json
+    php_odbc: php{{php_ver}}-odbc
+    php_tidy: php{{php_ver}}-tidy
+    php_common: php{{php_ver}}-common
+    php_sqlite: php-pdo
+    php_dev: php{{php_ver}}-devel
+    php_xmlrpc: php{{php_ver}}-xmlrpc
+    php_imagick: php{{php_ver}}-pecl-imagick
+    php_mysqlnd: php{{php_ver}}-mysqlnd
+    php_memcache: basesystem
+    python_dev: python-devel
+    python_mysqld: MySQL-python
+    dbclient_dev: "{{dbname}}-devel"
+    selinux_python: libselinux-python
+
